@@ -1,0 +1,4 @@
+---
+app03.staging.nyc1.example.com:
+  timestamp: '123456'
+scaling: true

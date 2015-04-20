@@ -1,0 +1,29 @@
+global
+    log 127.0.0.1 local0 notice
+    maxconn 2000
+    user haproxy
+    group haproxy
+    stats socket /tmp/haproxy
+
+defaults
+    log     global
+    mode    http
+    option  httplog
+    option  dontlognull
+    retries 3
+    option redispatch
+    timeout connect  5000
+    timeout client  10000
+    timeout server  10000
+
+listen app_name 0.0.0.0:80
+    mode http
+    balance roundrobin
+    option httpclose
+    option forwardfor
+    cookie SRVNAME insert
+<% count = 0 -%>
+<% for server in servers -%>
+    server web<%= count %> <%= server %>:80 maxconn 5 cookie S<%= count %> check
+<% count += 1 -%>
+<% end -%>

@@ -1,0 +1,20 @@
+global:
+  min_servers: 2
+  max_servers: 20
+  max_cpu_utilization: 80
+  min_cpu_utilization: 30
+  time_threshold: 300
+
+digitalocean:
+  token: YOUR_TOKEN_HERE
+  server_prefix: web
+  region: nyc1
+  environment: dev
+  domain: example.com
+  size: 1gb
+  image: IMAGE_ID
+  ssh_keys: [SSH_KEYS]
+  private_networking: true
+  ipv6: true
+  backups: false
+  user_data: "SOME USER DATA SCRIPT"
